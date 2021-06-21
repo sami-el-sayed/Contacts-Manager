@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static MobilePhone mobilePhone = new MobilePhone();
+    private static ContactsLoader contactsLoader = new ContactsLoader(); 
 
     public static void main(String[] args) {
         // Create a program that implements a simple mobile phone with the following capabilities.
@@ -21,6 +22,10 @@ public class Main {
 
         boolean quit = false;
         startPhone();
+        var contactsArr = contactsLoader.LoadContactsFromFile();
+        for (Contact contact : contactsArr) {
+            mobilePhone.addNewContact(contact);
+        }
         printActions();
         while(!quit) {
             System.out.println("\nEnter action: (6 to show available actions)");
@@ -59,6 +64,13 @@ public class Main {
             }
 
         }
+    }
+
+    private static void saveContracts()
+    {
+        var contactsArray = mobilePhone.GetContactsArray();
+        contactsLoader.SaveContactsToFile(contactsArray);
+
     }
 
     private static void addNewContact() {
@@ -114,6 +126,7 @@ public class Main {
         if(mobilePhone.addNewContact(newContact)) {
             System.out.println("New contact added:");
             newContact.printContact();
+            saveContracts();
         } else {
             System.out.println("Cannot add, " + name + " already on file");
         }
@@ -183,6 +196,9 @@ public class Main {
 
         }
 
+        saveContracts();
+
+
 
 
     }
@@ -198,6 +214,7 @@ public class Main {
 
         if(mobilePhone.removeContact(existingContactRecord)) {
             System.out.println("Successfully deleted");
+            saveContracts();
         } else {
             System.out.println("Error deleting contact");
         }

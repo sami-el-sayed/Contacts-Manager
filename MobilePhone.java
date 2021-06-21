@@ -8,6 +8,19 @@ public class MobilePhone {
         this.myContacts = new HashMap<String,Contact>();
     }
 
+
+    public ArrayList<Contact> GetContactsArray() {
+
+        var contactList = new ArrayList<Contact>();
+
+        for ( String key : myContacts.keySet() ) {
+            var contact = myContacts.get(key);
+            contactList.add(contact);
+        }
+
+        return contactList;
+    }
+
     public boolean addNewContact(Contact contact) {
 
         int phoneNumCount = 0;
