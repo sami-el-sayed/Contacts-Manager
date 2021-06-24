@@ -4,8 +4,8 @@ A CLI Java application that allows you to manage contacts in your phone
 
 ## How To
 
-1.Compile the Java classes
-2.Run the program by typing in your console ``java Main.java``
+1. Compile the Java classes
+2. Run the program by typing in your console ``java Main.java``
 
 ### What can you do
 * Add new contacts
